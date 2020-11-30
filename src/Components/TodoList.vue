@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="todo in todos" :key="todo.id">
+    <div v-for="todo in getFilteredTodos" :key="todo.id">
       <TodoItem v-bind:todo="todo" />
     </div>
   </div>
@@ -8,7 +8,7 @@
 
 <script>
 
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters} from 'vuex'
 import TodoItem from './TodoItem'
 
     export default {
@@ -16,12 +16,19 @@ import TodoItem from './TodoItem'
         components: {
             TodoItem
         },
-        computed: mapState({
-            todos: state => state.todos.todos
-        }),
-        methods: mapActions([
-            'setTodos'
-        ]),
+        computed: {
+            ...mapState({
+                todos: state => state.todos.todos
+            }),
+            ...mapGetters([
+                'getFilteredTodos'
+            ])
+        },
+        methods: {
+            ...mapActions([
+                'setTodos'
+           ])
+        },
         mounted: function () {
             this.setTodos()
         }

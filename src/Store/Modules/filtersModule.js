@@ -6,16 +6,16 @@ export const StatusFilters = {
 
 export const filtersModule = {
     state: {
-        filter: { status: StatusFilters.All }
+        filter: StatusFilters.All 
       },
       mutations: {
-        updateFilter(status) {
-            this.state.filter.status = status;
+        updateFilter(state, filter) {
+            state.filter = filter;
         }
       },
       actions: {
-        updateFilter({commit}, status) {
-            commit("updateFilter", status)
+        updateFilter({commit}, filter) {
+            commit("updateFilter", filter)
         }
       }
 }

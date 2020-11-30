@@ -1,4 +1,4 @@
-import { database } from "../Config/firebaseConfig";
+import { database } from "../../Config/firebaseConfig";
 
 import { v4 as uuid } from "uuid";
 
